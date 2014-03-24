@@ -18,11 +18,15 @@ the EasyOChem Mechanism question type.
 
 You must download a recent copy of Marvinsketch from www.chemaxon.com (free for academic use) and intall it in folder named "marvin" at your web root.  Alternatively you could edit the php scripts if your marvin installation is elsewhere.
 
+I have no affiliation with Chemaxon.
 
 USAGE:
 
-The EasyOChem Mechanism question can be used to design single step reaction mechanism steps.  You 
-can ask questions such as "Please add curved arrows showing the flow of electrons for the following reaction?"  or Please add curved arrows showing how the following resonance structure could be obtained?.
+The EasyoChem Curved Arrow / Electron Pushing question can be used to test and strengthen students knowledge of reaction mechanism, resonance and curved arrow notation.
 
-The student then draws the arrows for the mechanism.
+You can ask questions such as;
+
+    Please add curved arrows showing the flow of electrons for the following reaction?
+    Please add curved arrows showing how the following resonance structure could be obtained?
+
 
