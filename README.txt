@@ -1,8 +1,6 @@
   Moodle 2.3 plugin: EasyOChem Marvinsketch Mechanism (EasyOMech) question type
 
-  Based on Moodle integration script written by Dan Stowell
-
-  Modifications for Marvinsketch and Reaction arrows by Carl LeBlond
+  Carl LeBlond
 
 
 INSTALLATION:
