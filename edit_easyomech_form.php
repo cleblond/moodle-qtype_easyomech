@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * easyomech question editing form definition.
  *
- * @copyright  2007 Jamie Pratt
+ * @copyright  2014 onwards Carl LeBlond 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 require_once($CFG->dirroot . '/question/type/shortanswer/edit_shortanswer_form.php');
