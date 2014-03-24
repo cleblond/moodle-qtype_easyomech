@@ -19,7 +19,7 @@
  *
  * @package    qtype
  * @subpackage easyomech
- * @copyright  2007 Jamie Pratt
+ * @copyright  2014 and onward Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
