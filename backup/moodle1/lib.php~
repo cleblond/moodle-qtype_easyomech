@@ -43,12 +43,12 @@ class moodle1_qtype_easyomech_handler extends moodle1_qtype_handler {
      */
     public function process_question(array $data, array $raw) {
 
-        // Convert and write the answers first.
+        // convert and write the answers first
         if (isset($data['answers'])) {
             $this->write_answers($data['answers'], $this->pluginname);
         }
 
-        // Convert and write the easyomech extra fields.
+        // convert and write the easyomech extra fields
         foreach ($data['easyomech'] as $easyomech) {
             $easyomech['id'] = $this->converter->get_nextid();
             $this->write_xml('easyomech', $easyomech, array('/easyomech/id'));

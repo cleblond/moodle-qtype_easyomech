@@ -200,7 +200,7 @@ class qtype_easyomech_renderer extends qtype_renderer {
                                             $feedbackimage,
                                             $readonly,
                                             $appletoptions,
-                                            $strippedanswerid),
+    $strippedanswerid),
                                       false,
                                       $jsmodule);
 
@@ -253,6 +253,11 @@ class qtype_easyomech_renderer extends qtype_renderer {
         if (!$answer) {
             return '';
         }
+
+//        return get_string('correctansweris', 'qtype_easyomech', s($answer->answer));
+//        return get_string('correctansweris', 'qtype_easyomech', s($answer->answer));
+
+
     }
 
     protected function hidden_fields(question_attempt $qa) {

@@ -58,7 +58,7 @@ class backup_qtype_easyomech_plugin extends backup_qtype_plugin {
         // Now the own qtype tree.
         $pluginwrapper->add_child($easyomech);
 
-        // Set source to populate the data.
+        // set source to populate the data.
         $easyomech->set_source_table('question_easyomech',
                 array('question' => backup::VAR_PARENTID));
 

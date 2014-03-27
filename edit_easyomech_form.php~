@@ -120,7 +120,8 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
 
         // Construct the insert button.
         $scriptattrs = 'onClick = "getSmilesEdit(this.name, \'mrv\')"';
-        $insertbutton = $mform->createElement('button', 'insert', get_string('insertfromeditor', 'qtype_easyomech'), $scriptattrs);
+
+        $insertbutton = $mform->createElement('button','insert',get_string('insertfromeditor', 'qtype_easyomech'),$scriptattrs);
         array_splice($repeated, 2, 0, array($insertbutton));
 
         return $repeated;

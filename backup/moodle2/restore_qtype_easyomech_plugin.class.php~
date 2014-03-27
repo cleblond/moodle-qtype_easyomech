@@ -44,7 +44,7 @@ class restore_qtype_easyomech_plugin extends restore_qtype_plugin {
         // This qtype uses question_answers, add them.
         $this->add_question_question_answers($paths);
 
-        // Add own qtype stuff.
+        // Add own qtype stuff
         $elename = 'easyomech';
         // We used get_recommended_name() so this works.
         $elepath = $this->get_pathfor('/easyomech');

@@ -50,4 +50,6 @@ class qtype_easyomech extends qtype_shortanswer {
         $questiondata->options->usecase = '';
           parent::initialise_question_instance($question, $questiondata);
     }
+   
+
 }

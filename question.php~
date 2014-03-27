@@ -131,7 +131,8 @@ class qtype_easyomech_question extends qtype_shortanswer_question {
         }
     }
 
-    public function get_expected_data() {
+public function get_expected_data() {
+
         return array('answer' => PARAM_RAW, 'easyomech' => PARAM_RAW, 'mol' => PARAM_RAW);
     }
 }

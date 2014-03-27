@@ -16,18 +16,17 @@ Once you have done that, visit your Moodle admin page - the database
 tables should automatically be upgraded to include an extra table for
 the EasyOChem Mechanism question type.
 
-You must download a recent copy of Marvin Applets from www.chemaxon.com (free for academic use)
-and intall it in folder named "marvin" at your web root.  Alternatively 
-you could edit the php scripts if your marvin installation is elsewhere.
+You must download a recent copy of Marvin Applets from www.chemaxon.com (free for academic use) and intall it in folder named "marvin" at your web root.  Alternatively you could edit the php scripts if your marvin installation is elsewhere.
 
 I have no affiliation with Chemaxon.
 
 USAGE:
 
-The EasyoChem Curved Arrow / Electron Pushing question can be used to test and strengthen 
-students knowledge of reaction mechanism, resonance and curved arrow notation.
+The EasyoChem Curved Arrow / Electron Pushing question can be used to test and strengthen students knowledge of reaction mechanism, resonance and curved arrow notation.
 
 You can ask questions such as;
 
     Please add curved arrows showing the flow of electrons for the following reaction?
     Please add curved arrows showing how the following resonance structure could be obtained?
+
+
