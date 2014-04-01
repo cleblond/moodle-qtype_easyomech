@@ -67,17 +67,6 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
         );
         $mform->addElement('select', 'orderimportant',
         get_string('caseorderimportant', 'qtype_easyomech'), $menu);
-
-        $easyomechbuildstring = "\n<script LANGUAGE=\"JavaScript1.1\" SRC=\"../../marvin/marvin.js\"></script>".
-        "<script LANGUAGE=\"JavaScript1.1\">
-        msketch_name = \"MSketch\";
-        msketch_begin(\"../../marvin\", 650, 460);
-        msketch_param(\"menuconfig\", \"customization_mech_instructor.xml\");
-        msketch_param(\"background\", \"#ffffff\");
-        msketch_param(\"molbg\", \"#ffffff\");
-        msketch_end();
-        </script> ";
-
         $mform->addElement('html', html_writer::start_tag('div', array('style' => 'width:650px;', 'id' => 'appletdiv')));
         $mform->addElement('html', html_writer::start_tag('div', array('style' => 'float: left;font-style: italic ;')));
         $mform->addElement('html', html_writer::start_tag('small'));
@@ -88,7 +77,6 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
         array('class' => 'easyomechauthor')));
         $mform->addElement('html', html_writer::end_tag('small'));
         $mform->addElement('html', html_writer::end_tag('div'));
-        //$mform->addElement('html', $easyomechbuildstring);
         $mform->addElement('html', html_writer::end_tag('div'));
 
         // Add applet to page

@@ -10,8 +10,6 @@ M.qtype_easyomech={
 
     insert_applet : function(){
 
-
-
 	var warningspan = document.getElementById('appletdiv');
         warningspan.innerHTML = '';
 
@@ -50,7 +48,6 @@ M.qtype_easyomech={
         param.value='true';
 	newApplet.appendChild(param);
 
-
 	var param=document.createElement('param');
 	param.name='defaultTool';
         param.value='electronFlow2';
@@ -77,7 +74,6 @@ M.qtype_easyomech.init_getanswerstring = function(Y, moodle_version){
     if (moodle_version >= 2012120300) { //Moodle 2.4 or higher
         YAHOO = Y.YUI2;
     }
-
 
     Y.all(".id_insert").each(function(node) {
     	node.on("click", function () {
