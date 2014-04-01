@@ -94,8 +94,6 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
                                       true,
                                       $jsmodule);
 
-
-
         // Add structure to applet.
         $jsmodule = array(
             'name'     => 'qtype_easyomech',
