@@ -81,7 +81,6 @@ M.qtype_easyomech.init_getanswerstring = function(Y, moodle_version){
 
     Y.all(".id_insert").each(function(node) {
     	node.on("click", function () {
-        alert('here2');
         var buttonid = node.getAttribute('id');
         var s = document.MSketch.getMol('mrv');
 	textfieldid = 'id_answer_' + buttonid.substr(buttonid.length - 1);
