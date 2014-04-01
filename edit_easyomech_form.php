@@ -78,7 +78,7 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
         msketch_end();
         </script> ";
 
-        $mform->addElement('html', html_writer::start_tag('div', array('style' => 'width:650px;')));
+        $mform->addElement('html', html_writer::start_tag('div', array('style' => 'width:650px;', 'id' => 'appletdiv')));
         $mform->addElement('html', html_writer::start_tag('div', array('style' => 'float: left;font-style: italic ;')));
         $mform->addElement('html', html_writer::start_tag('small'));
         $easyomechhomeurl = 'http://www.chemaxon.com';
@@ -88,8 +88,25 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
         array('class' => 'easyomechauthor')));
         $mform->addElement('html', html_writer::end_tag('small'));
         $mform->addElement('html', html_writer::end_tag('div'));
-        $mform->addElement('html', $easyomechbuildstring);
+        //$mform->addElement('html', $easyomechbuildstring);
         $mform->addElement('html', html_writer::end_tag('div'));
+
+        // Add applet to page
+        $jsmodule = array(
+            'name'     => 'qtype_easyomech',
+            'fullpath' => '/question/type/easyomech/easyomech_script.js',
+            'requires' => array(),
+            'strings' => array(
+                array('enablejava', 'qtype_easyomech')
+            )
+        );
+
+        $PAGE->requires->js_init_call('M.qtype_easyomech.insert_applet',
+                                      array(),
+                                      true,
+                                      $jsmodule);
+
+
 
         // Add structure to applet.
         $jsmodule = array(
@@ -110,6 +127,7 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
                 question_bank::fraction_options());
 
         $this->add_interactive_settings();
+        $PAGE->requires->js_init_call('M.qtype_easyomech.init_getanswerstring', array($CFG->version));
     }
 
     protected function get_per_answer_fields($mform, $label, $gradeoptions,
@@ -117,9 +135,9 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
 
         $repeated = parent::get_per_answer_fields($mform, $label, $gradeoptions,
                 $repeatedoptions, $answersoption);
-
+        $scriptattrs = 'class = id_insert';
         // Construct the insert button.
-        $scriptattrs = 'onClick = "getSmilesEdit(this.name, \'mrv\')"';
+        //$scriptattrs = 'onClick = "getSmilesEdit(this.name, \'mrv\')"';
         $insertbutton = $mform->createElement('button', 'insert', get_string('insertfromeditor', 'qtype_easyomech'), $scriptattrs);
         array_splice($repeated, 2, 0, array($insertbutton));
 
