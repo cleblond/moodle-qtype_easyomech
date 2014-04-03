@@ -170,7 +170,7 @@ class qtype_easyomech_renderer extends qtype_renderer {
     }
 
     protected function require_js($toreplaceid, question_attempt $qa, $readonly, $correctness, $appletoptions) {
-        global $PAGE;
+        global $PAGE, $CFG;
 
         $jsmodule = array(
             'name'     => 'qtype_easyomech',
@@ -200,7 +200,8 @@ class qtype_easyomech_renderer extends qtype_renderer {
                                             $feedbackimage,
                                             $readonly,
                                             $appletoptions,
-                                            $strippedanswerid),
+                                            $strippedanswerid,
+                                            $CFG->wwwroot),
                                       false,
                                       $jsmodule);
 

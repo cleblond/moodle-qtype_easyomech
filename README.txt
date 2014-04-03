@@ -1,6 +1,6 @@
 Moodle 2.3 plugin: EasyOChem Marvinsketch Mechanism (EasyOMech) question type
 
-  Carl LeBlond
+Carl LeBlond
 
 
 INSTALLATION:

@@ -4,7 +4,7 @@
 
 M.qtype_easyomech={
     insert_easyomech_applet : function(Y, toreplaceid, appletid, name, topnode,
-                                                                    appleturl, feedback, readonly, appletoptions, stripped_answer_id){
+                                                                    appleturl, feedback, readonly, appletoptions, stripped_answer_id, moodleurl){
         var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];   ///CRL changed smiles to mol
 //        var javaparams = new Array();
         var easyomechoptions = new Array();
@@ -39,7 +39,7 @@ M.qtype_easyomech={
             javaparams[javaparams.length] = easyomechoptions.join(',');
         }
         if (!this.show_java(toreplaceid, appletid, name, appleturl,
-                                                            600, 460, 'chemaxon.marvin.applet.JMSketchLaunch', javaparams, stripped_answer_id)) {
+                                                            600, 460, 'chemaxon.marvin.applet.JMSketchLaunch', javaparams, stripped_answer_id, moodleurl)) {
 
 
 
@@ -189,7 +189,7 @@ local2unix : function (s) {
     doneie6focus : 0,
     doneie6focusapplets : 0,
  // Note: This method is also called from mod/audiorecorder
-    show_java : function (id, appletid, name, java, width, height, appletclass, javavars, stripped_answer_id) {
+    show_java : function (id, appletid, name, java, width, height, appletclass, javavars, stripped_answer_id, moodleurl) {
         if (this.javainstalled == -99 ) {
             this.javainstalled = PluginDetect.isMinVersion(
                 'Java', 1.5, 'plugindetect.getjavainfo.jar', [0, 2, 0]) == 1;
@@ -233,7 +233,7 @@ local2unix : function (s) {
 
 	var param=document.createElement('param');
 	param.name='menuconfig';
-        param.value='../eolms/question/type/easyomech/customization_mech_student.xml';
+        param.value = moodleurl + '/question/type/easyomech/customization_mech_student.xml';
 	newApplet.appendChild(param);
 
 	var param=document.createElement('param');
