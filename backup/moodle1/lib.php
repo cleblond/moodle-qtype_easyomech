@@ -17,7 +17,7 @@
 /**
  * @package    qtype
  * @subpackage easyomech
- * @copyright  2011 David Mudrak <david@moodle.com>
+ * @copyright  2014 onwards Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

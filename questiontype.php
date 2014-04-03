@@ -31,13 +31,6 @@ require_once($CFG->dirroot . '/question/engine/lib.php');
 require_once($CFG->dirroot . '/question/type/easyomech/question.php');
 require_once($CFG->dirroot . '/question/type/shortanswer/questiontype.php');
 
-
-/**
- * The easyomech question type.
- *
- * @copyright  1999 onwards Martin Dougiamas  {@link http://moodle.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 class qtype_easyomech extends qtype_shortanswer {
     public function extra_question_fields() {
         return array('question_easyomech', 'answers', 'hideproducts', 'orderimportant');

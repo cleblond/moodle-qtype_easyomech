@@ -30,12 +30,6 @@ require_once($CFG->dirroot . '/question/type/shortanswer/question.php');
 
 $generatedfeedback = "";
 
-/**
- * Represents a easyomech question.
- *
- * @copyright  1999 onwards Martin Dougiamas {@link http://moodle.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 class qtype_easyomech_question extends qtype_shortanswer_question {
     public function compare_response_with_answer(array $response, question_answer $answer) {
         global $generatedfeedback, $DB;
