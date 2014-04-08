@@ -24,12 +24,7 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
-<<<<<<< HEAD
-$plugin->version   = 2014040700;
-=======
-$plugin->version   = 2014040400;
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
+$plugin->version   = 2014040800;
 $plugin->requires  = 2012062500;
 $plugin->cron      = 0;
 $plugin->component = 'qtype_easyomech';
