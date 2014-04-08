@@ -4,52 +4,26 @@
 
 M.qtype_easyomech={
     insert_easyomech_applet : function(Y, toreplaceid, appletid, name, topnode,
-<<<<<<< HEAD
-                                                                    appleturl, feedback, readonly, appletoptions, stripped_answer_id, moodleurl, marvinpath){
-        var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];   ///CRL changed smiles to mol
-        var easyomechoptions = new Array();
-=======
                                                                     appleturl, feedback, readonly, appletoptions, stripped_answer_id, moodleurl){
         var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];
         var easyomechoptions = new Array();
 
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
         if (appletoptions) {
             easyomechoptions[easyomechoptions.length] = appletoptions;
         }
         if (readonly) {
-<<<<<<< HEAD
-	    easyomechoptions[easyomechoptions.length] = Y.one(topnode+' input.mol').get('value');  ///crl 
-        }
-        if (easyomechoptions.length !== 0) {
-  	    javaparams[javaparams.length] = "mrv";  ///added by crl
-=======
             easyomechoptions[easyomechoptions.length] = Y.one(topnode+' input.mol').get('value');  ///crl 
         }
         if (easyomechoptions.length !== 0) {
               javaparams[javaparams.length] = "mrv";  ///added by crl
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
             javaparams[javaparams.length] = easyomechoptions.join(',');
         }
         if (!this.show_java(toreplaceid, appletid, name, appleturl,
-                                                            600, 460, 'chemaxon.marvin.applet.JMSketchLaunch', javaparams, stripped_answer_id, moodleurl, marvinpath)) {
+                                                            600, 460, 'chemaxon.marvin.applet.JMSketchLaunch', javaparams, stripped_answer_id, moodleurl)) {
 
             this.show_error(Y, topnode);
 
         } else {
-<<<<<<< HEAD
-		var inputdiv = Y.one(topnode);
-            	inputdiv.ancestor('form').on('submit', function (){
-                Y.one(topnode+' input.answer').set('value', this.find_java_applet(name).getMol("mrv"));
-		var strvalue = "" + this.find_java_applet(name).getMol("mrv");
-		var v = navigator.appVersion;
-		if(v.indexOf("Win") > 0) {
-			strvalue = strvalue.split("\r\n").join("\n"); // To avoid "\r\r\n"
-		} else { // Unix
-		//	return strvalue;
-		}
-                 Y.one(topnode+' input.mol').set('value', strvalue);
-=======
             var inputdiv = Y.one(topnode);
             inputdiv.ancestor('form').on('submit', function (){
             Y.one(topnode+' input.answer').set('value', this.find_java_applet(name).getMol("mrv"));
@@ -63,25 +37,10 @@ M.qtype_easyomech={
             }
 
             Y.one(topnode+' input.mol').set('value', strvalue);
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
             }, this);
         }
     },
 
-<<<<<<< HEAD
-    show_arroworder : function () {
-
-	text="<bookstore>"
-	text=text+"<book>";
-	text=text+"<title>Everyday Italian</title>";
-	text=text+"<author>Giada De Laurentiis</author>";
-	text=text+"<year>2005</year>";
-	text=text+"</book>";
-	text=text+"</bookstore>";
-
-	xmlDoc=this.loadXMLString(text);
-	y=xmlDoc.getElementsByTagName("book")[0];
-=======
 
 // Show arrow orders.
 
@@ -94,13 +53,9 @@ M.qtype_easyomech={
         text=text+"<year>2005</year>";
         text=text+"</book>";
         text=text+"</bookstore>";
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
 
         xmlDoc=this.loadXMLString(text);
 
-<<<<<<< HEAD
-	},
-=======
         y=xmlDoc.getElementsByTagName("book")[0];
 
         xmlDoc.documentElement.removeChild(y); 
@@ -108,7 +63,6 @@ M.qtype_easyomech={
         //alert(y);
 
         },
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
 
     loadXMLString : function (txt){
 
@@ -127,10 +81,7 @@ M.qtype_easyomech={
         
 },
 
-<<<<<<< HEAD
-=======
 
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
     show_error : function (Y, topnode) {
         var errormessage = '<span class ="javawarning">'
             +M.util.get_string('enablejava', 'qtype_easyomech')+
@@ -154,7 +105,7 @@ M.qtype_easyomech={
     doneie6focus : 0,
     doneie6focusapplets : 0,
  // Note: This method is also called from mod/audiorecorder
-    show_java : function (id, appletid, name, java, width, height, appletclass, javavars, stripped_answer_id, moodleurl, marvinpath) {
+    show_java : function (id, appletid, name, java, width, height, appletclass, javavars, stripped_answer_id, moodleurl) {
         if (this.javainstalled == -99 ) {
             this.javainstalled = PluginDetect.isMinVersion(
                 'Java', 1.5, 'plugindetect.getjavainfo.jar', [0, 2, 0]) == 1;
@@ -172,21 +123,15 @@ M.qtype_easyomech={
         newApplet.height=height;
         newApplet.tabIndex = -1; // Not directly tabbable
         newApplet.mayScript = true;     
-<<<<<<< HEAD
-	newApplet.id = appletid;
-	newApplet.setAttribute('codebase', marvinpath);
-
-	var param=document.createElement('param');
-	param.name='codebase_lookup';
-=======
         newApplet.id = appletid;
         newApplet.setAttribute('codebase','/marvin');
 
         var param=document.createElement('param');
         param.name='codebase_lookup';
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
         param.value='false';
         newApplet.appendChild(param);
+
+
 
         var param=document.createElement('param');
         param.name='menubar';
@@ -212,14 +157,9 @@ M.qtype_easyomech={
         var param=document.createElement('param');
         param.name='defaultTool';
         param.value='electronFlow2';
-<<<<<<< HEAD
-	newApplet.appendChild(param);
-
-=======
         newApplet.appendChild(param);
         // In case applet supports the focushack system, we
         // pass in its id as a parameter.
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
         javavars[javavars.length] = 'focushackid';
         javavars[javavars.length] = newApplet.id;
         for (var i=0;i<javavars.length;i+=2) {
@@ -228,16 +168,10 @@ M.qtype_easyomech={
             param.value=javavars[i+1];
             newApplet.appendChild(param);
         }
-<<<<<<< HEAD
-	    param.name='mol';
-            param.value = encodeURIComponent(document.getElementById(stripped_answer_id).value);
-
-=======
             param.name='mol';
             param.value = encodeURIComponent(document.getElementById(stripped_answer_id).value);
 
 
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
         warningspan.appendChild(newApplet);
 
         if(document.body.className.indexOf('ie6')!=-1 && !this.doneie6focus) {
@@ -307,52 +241,12 @@ M.qtype_easyomech.init_showarrows = function(Y, moodle_version, slot){
 
         
         var currentarrow = Number(document.getElementById('curarrow'+slot).value);
-<<<<<<< HEAD
-	currentarrow = currentarrow + 1;
-	
-	if(currentarrow > arrowtot){
-	currentarrow = 0;
-	}
-	document.getElementById('curarrow'+slot).value=Number(currentarrow);
-
-
-        //console.log(currentarrow);
-
-		//console.log('next='+currentarrow);
-	
-		xAll = xmlDoc.getElementsByTagName('*');
-
-		
-			var i=5, j, y, counter=0, newxmlStr;
-
-
-			  for(j = xAll.length - 1; j >= 0; j -= 1) {
-			    y = xAll[j];
-
-			    //console.log(y.nodeName)
-			    if (y.nodeName == 'MEFlow') {
-				
-
-					if(counter== arrowtot-currentarrow){j=0;
-					}
-					else{
-					y.parentNode.removeChild(y);
-					}
-		                        //alert(newxmlStr);
-		                        counter=counter+1;
-			    } 
-			  }
-			//}
-			newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
-			document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
-=======
         currentarrow = currentarrow + 1;
         
         if(currentarrow > arrowtot){
         currentarrow = 0;
         }
         document.getElementById('curarrow'+slot).value=Number(currentarrow);
->>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
 
         xAll = xmlDoc.getElementsByTagName('*');
                 
@@ -470,5 +364,4 @@ M.qtype_easyomech.init_showarrowsrev = function(Y, moodle_version, slot){
 
     });
 };
-
 
