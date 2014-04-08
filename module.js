@@ -4,28 +4,40 @@
 
 M.qtype_easyomech={
     insert_easyomech_applet : function(Y, toreplaceid, appletid, name, topnode,
+<<<<<<< HEAD
                                                                     appleturl, feedback, readonly, appletoptions, stripped_answer_id, moodleurl, marvinpath){
         var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];   ///CRL changed smiles to mol
         var easyomechoptions = new Array();
+=======
+                                                                    appleturl, feedback, readonly, appletoptions, stripped_answer_id, moodleurl){
+        var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];
+        var easyomechoptions = new Array();
+
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
         if (appletoptions) {
             easyomechoptions[easyomechoptions.length] = appletoptions;
         }
         if (readonly) {
+<<<<<<< HEAD
 	    easyomechoptions[easyomechoptions.length] = Y.one(topnode+' input.mol').get('value');  ///crl 
         }
         if (easyomechoptions.length !== 0) {
   	    javaparams[javaparams.length] = "mrv";  ///added by crl
+=======
+            easyomechoptions[easyomechoptions.length] = Y.one(topnode+' input.mol').get('value');  ///crl 
+        }
+        if (easyomechoptions.length !== 0) {
+              javaparams[javaparams.length] = "mrv";  ///added by crl
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
             javaparams[javaparams.length] = easyomechoptions.join(',');
         }
         if (!this.show_java(toreplaceid, appletid, name, appleturl,
                                                             600, 460, 'chemaxon.marvin.applet.JMSketchLaunch', javaparams, stripped_answer_id, moodleurl, marvinpath)) {
 
-
-
             this.show_error(Y, topnode);
 
-
         } else {
+<<<<<<< HEAD
 		var inputdiv = Y.one(topnode);
             	inputdiv.ancestor('form').on('submit', function (){
                 Y.one(topnode+' input.answer').set('value', this.find_java_applet(name).getMol("mrv"));
@@ -37,10 +49,26 @@ M.qtype_easyomech={
 		//	return strvalue;
 		}
                  Y.one(topnode+' input.mol').set('value', strvalue);
+=======
+            var inputdiv = Y.one(topnode);
+            inputdiv.ancestor('form').on('submit', function (){
+            Y.one(topnode+' input.answer').set('value', this.find_java_applet(name).getMol("mrv"));
+            var strvalue = "" + this.find_java_applet(name).getMol("mrv");
+            var v = navigator.appVersion;
+            if(v.indexOf("Win") > 0) {
+                        strvalue = strvalue.split("\r\n").join("\n"); // To avoid "\r\r\n"
+                //return strvalue.split("\n").join("\r\n");
+            } else { // Unix
+                //        return strvalue;
+            }
+
+            Y.one(topnode+' input.mol').set('value', strvalue);
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
             }, this);
         }
     },
 
+<<<<<<< HEAD
     show_arroworder : function () {
 
 	text="<bookstore>"
@@ -53,29 +81,56 @@ M.qtype_easyomech={
 
 	xmlDoc=this.loadXMLString(text);
 	y=xmlDoc.getElementsByTagName("book")[0];
+=======
 
-	xmlDoc.documentElement.removeChild(y); 
+// Show arrow orders.
 
+    show_arroworder : function () {
+
+        text="<bookstore>"
+        text=text+"<book>";
+        text=text+"<title>Everyday Italian</title>";
+        text=text+"<author>Giada De Laurentiis</author>";
+        text=text+"<year>2005</year>";
+        text=text+"</book>";
+        text=text+"</bookstore>";
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
+
+        xmlDoc=this.loadXMLString(text);
+
+<<<<<<< HEAD
 	},
+=======
+        y=xmlDoc.getElementsByTagName("book")[0];
+
+        xmlDoc.documentElement.removeChild(y); 
+
+        //alert(y);
+
+        },
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
 
     loadXMLString : function (txt){
 
-	if (window.DOMParser)
-	  {
-	  parser=new DOMParser();
-	  xmlDoc=parser.parseFromString(txt,"text/xml");
-	  }
-	else // Internet Explorer
-	  {
-	  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-	  xmlDoc.async=false;
-	  xmlDoc.loadXML(txt);
-	  }
-	return xmlDoc;
-	
-
+        if (window.DOMParser)
+          {
+          parser=new DOMParser();
+          xmlDoc=parser.parseFromString(txt,"text/xml");
+          }
+        else // Internet Explorer
+          {
+          xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+          xmlDoc.async=false;
+          xmlDoc.loadXML(txt);
+          }
+        return xmlDoc;
+        
 },
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
     show_error : function (Y, topnode) {
         var errormessage = '<span class ="javawarning">'
             +M.util.get_string('enablejava', 'qtype_easyomech')+
@@ -117,40 +172,54 @@ M.qtype_easyomech={
         newApplet.height=height;
         newApplet.tabIndex = -1; // Not directly tabbable
         newApplet.mayScript = true;     
+<<<<<<< HEAD
 	newApplet.id = appletid;
 	newApplet.setAttribute('codebase', marvinpath);
 
 	var param=document.createElement('param');
 	param.name='codebase_lookup';
-        param.value='false';
-	newApplet.appendChild(param);
+=======
+        newApplet.id = appletid;
+        newApplet.setAttribute('codebase','/marvin');
 
         var param=document.createElement('param');
-	param.name='menubar';
+        param.name='codebase_lookup';
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
         param.value='false';
-	newApplet.appendChild(param);
+        newApplet.appendChild(param);
 
-	var param=document.createElement('param');
-	param.name='menuconfig';
+        var param=document.createElement('param');
+        param.name='menubar';
+        param.value='false';
+        newApplet.appendChild(param);
+
+        var param=document.createElement('param');
+        param.name='menuconfig';
         param.value = moodleurl + '/question/type/easyomech/customization_mech_student.xml';
-	newApplet.appendChild(param);
+        newApplet.appendChild(param);
 
-	var param=document.createElement('param');
-	param.setAttribute('bondDraggedAlong','false');
-	newApplet.appendChild(param);
+        var param=document.createElement('param');
+        param.setAttribute('bondDraggedAlong','false');
+        newApplet.appendChild(param);
 
 
-	var param=document.createElement('param');
-	param.name='chargeWithCircle';
+        var param=document.createElement('param');
+        param.name='chargeWithCircle';
         param.value='true';
-	newApplet.appendChild(param);
+        newApplet.appendChild(param);
 
 
-	var param=document.createElement('param');
-	param.name='defaultTool';
+        var param=document.createElement('param');
+        param.name='defaultTool';
         param.value='electronFlow2';
+<<<<<<< HEAD
 	newApplet.appendChild(param);
 
+=======
+        newApplet.appendChild(param);
+        // In case applet supports the focushack system, we
+        // pass in its id as a parameter.
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
         javavars[javavars.length] = 'focushackid';
         javavars[javavars.length] = newApplet.id;
         for (var i=0;i<javavars.length;i+=2) {
@@ -159,9 +228,16 @@ M.qtype_easyomech={
             param.value=javavars[i+1];
             newApplet.appendChild(param);
         }
+<<<<<<< HEAD
 	    param.name='mol';
             param.value = encodeURIComponent(document.getElementById(stripped_answer_id).value);
 
+=======
+            param.name='mol';
+            param.value = encodeURIComponent(document.getElementById(stripped_answer_id).value);
+
+
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
         warningspan.appendChild(newApplet);
 
         if(document.body.className.indexOf('ie6')!=-1 && !this.doneie6focus) {
@@ -192,10 +268,6 @@ M.qtype_easyomech={
 
 
 
-/**
-* Defines the javascript code for manually refreshing the EJSApp File Browser block.    .
-*
-*/
 M.qtype_easyomech.init_showarrows = function(Y, moodle_version, slot){
     var handleSuccess = function(o) {
 
@@ -211,35 +283,31 @@ M.qtype_easyomech.init_showarrows = function(Y, moodle_version, slot){
         YAHOO = Y.YUI2;
     }
 
-
     var refreshBut = Y.one("#showorder"+slot, slot);
     refreshBut.on("click", function () {
 
+    var xmlStr = document.getElementById('correct_answer'+slot).value;
 
+    ///parse xml string        
+        if (window.DOMParser)
+                  {
+                  parser=new DOMParser();
+                  xmlDoc=parser.parseFromString(xmlStr,"text/xml");
+                  }
+        else // Internet Explorer
+        {
+                  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+                  xmlDoc.async=false;
+                  xmlDoc.loadXML(xmlStr);
+        } 
 
+        meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
 
-	var xmlStr = document.getElementById('correct_answer'+slot).value;
+        var arrowtot = meflowarrows.length;
 
-		///parse xml string	
-		if (window.DOMParser)
-		  {
-		  parser=new DOMParser();
-		  xmlDoc=parser.parseFromString(xmlStr,"text/xml");
-		 // alert('not IE');
-		  }
-		else // Internet Explorer
-		  {
-		  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-		  xmlDoc.async=false;
-		  xmlDoc.loadXML(xmlStr);
-		  } 
-
-		meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
-
-		var arrowtot = meflowarrows.length;
-
-	
+        
         var currentarrow = Number(document.getElementById('curarrow'+slot).value);
+<<<<<<< HEAD
 	currentarrow = currentarrow + 1;
 	
 	if(currentarrow > arrowtot){
@@ -277,8 +345,33 @@ M.qtype_easyomech.init_showarrows = function(Y, moodle_version, slot){
 			//}
 			newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
 			document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
+=======
+        currentarrow = currentarrow + 1;
+        
+        if(currentarrow > arrowtot){
+        currentarrow = 0;
+        }
+        document.getElementById('curarrow'+slot).value=Number(currentarrow);
+>>>>>>> d93fbf6915f277b91c1054c83d400f18a8bd6f04
 
+        xAll = xmlDoc.getElementsByTagName('*');
+                
+        var i=5, j, y, counter=0, newxmlStr;
 
+        for(j = xAll.length - 1; j >= 0; j -= 1) {
+            y = xAll[j];
+            if (y.nodeName == 'MEFlow') {                    
+                if(counter== arrowtot-currentarrow){j=0;
+                }
+                else{
+                y.parentNode.removeChild(y);
+                }
+                counter=counter+1;
+                         
+            } 
+        }
+        newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
+        document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
     });
 };
 
@@ -308,73 +401,72 @@ M.qtype_easyomech.init_showarrowsrev = function(Y, moodle_version, slot){
 
 
 
-	var xmlStr = document.getElementById('correct_answer'+slot).value;
+        var xmlStr = document.getElementById('correct_answer'+slot).value;
 
-		///parse xml string	
-		if (window.DOMParser)
-		  {
-		  parser=new DOMParser();
-		  xmlDoc=parser.parseFromString(xmlStr,"text/xml");
-		 // alert('not IE');
-		  }
-		else // Internet Explorer
-		  {
-		  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-		  xmlDoc.async=false;
-		  xmlDoc.loadXML(xmlStr);
-		  } 
+                ///parse xml string        
+                if (window.DOMParser)
+                  {
+                  parser=new DOMParser();
+                  xmlDoc=parser.parseFromString(xmlStr,"text/xml");
+                 // alert('not IE');
+                  }
+                else // Internet Explorer
+                  {
+                  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+                  xmlDoc.async=false;
+                  xmlDoc.loadXML(xmlStr);
+                  } 
 
-		meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
+                meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
 
-		var arrowtot = meflowarrows.length;
+                var arrowtot = meflowarrows.length;
 
-	
+        
         var currentarrow = Number(document.getElementById('curarrow'+slot).value);
 
-	currentarrow = currentarrow -1;
+        currentarrow = currentarrow -1;
 
-	if(currentarrow < 0){
-	currentarrow = arrowtot;
-	}
-	
+        if(currentarrow < 0){
+        currentarrow = arrowtot;
+        }
+        
 
-	document.getElementById('curarrow'+slot).value=Number(currentarrow);
+        document.getElementById('curarrow'+slot).value=Number(currentarrow);
 
 
         console.log('curarrow='+currentarrow);
 
-		//console.log('prev='+currentarrow);
-	
-		xAll = xmlDoc.getElementsByTagName('*');
+                //console.log('prev='+currentarrow);
+        
+                xAll = xmlDoc.getElementsByTagName('*');
 
-		
-			var i=5, j, y, counter=0, newxmlStr;
+                
+                        var i=5, j, y, counter=0, newxmlStr;
 
 
-			  for(j = xAll.length - 1; j >= 0; j -= 1) {
-			    y = xAll[j];
+                          for(j = xAll.length - 1; j >= 0; j -= 1) {
+                            y = xAll[j];
 
-			    //console.log(y.nodeName)
-			    if (y.nodeName == 'MEFlow') {
-				
+                            //console.log(y.nodeName)
+                            if (y.nodeName == 'MEFlow') {
+                                
 
-					if(counter== arrowtot-currentarrow){j=0;
-					}
-					else{
-					y.parentNode.removeChild(y);
-					}
-		                        //alert(newxmlStr);
-		                        counter=counter+1;
-					//j=0;
+                                        if(counter== arrowtot-currentarrow){j=0;
+                                        }
+                                        else{
+                                        y.parentNode.removeChild(y);
+                                        }
+                                        //alert(newxmlStr);
+                                        counter=counter+1;
+                                        //j=0;
 
-				//}
-			      
-			    } 
-			  }
-			//}
-			newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
-			document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
-
+                                //}
+                              
+                            } 
+                          }
+                        //}
+                        newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
+                        document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
 
     });
 };
