@@ -45,10 +45,10 @@ $string['pluginname_link'] = 'question/type/easyomech';
 $string['pluginnameadding'] = 'Adding a Electron Pushing / Curved Arrow question';
 $string['pluginnameediting'] = 'Editing a Electron Pushing / Curved Arrow question';
 $string['pluginnamesummary'] = 'Students must provide curved arrows on a structure or reaction template that you predefine.  You can ask questions such as;<ul><li>Please add curved arrows showing the flow of electrons for the following reaction?</li><li>Please add curved arrows showing how the following resonance structure could be obtained?</li></ul>';
-$string['easyomech_options'] = 'Marvin Applet options';
+$string['easyomech_options'] =  'Path to Marvin Applet installation';
 $string['enablejava'] = 'Tried but failed to load Marvinsketch editor. You have not got a JAVA runtime environment working in your browser. You will need one to attempt this question.';
 $string['enablejavaandjavascript'] = 'Loading Marvinsketch editor.... If this message does not get replaced by the Marvin editor then you have not got javascript and a JAVA runtime environment working in your browser.';
-$string['configeasyomechoptions'] = 'Comma separated list of Marvinsketch applet options (see <a href="http://www.chemaxon.com">list of available options</a>)';
+$string['configeasyomechoptions'] = 'The path of your marvin installation relative to your web root.  (e.g. If your moodle is installed at /var/www/moodle and you install your marvin at /var/www/marvin then you should use the default /marvin)';
 $string['filloutoneanswer'] = '<b><ul>
 <li>Draw a complete reaction or resonance conversion with curved arrows in the MarvinSketch applet below.</li>
 <li>Use multiple arrows for muti-step reactions.</li>

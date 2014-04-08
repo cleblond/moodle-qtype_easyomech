@@ -172,6 +172,9 @@ class qtype_easyomech_renderer extends qtype_renderer {
     protected function require_js($toreplaceid, question_attempt $qa, $readonly, $correctness, $appletoptions) {
         global $PAGE, $CFG;
 
+        $marvinconfig = get_config('qtype_easyomech_options');
+	$marvinpath = $marvinconfig->path;
+
         $jsmodule = array(
             'name'     => 'qtype_easyomech',
             'fullpath' => '/question/type/easyomech/module.js',
@@ -201,7 +204,8 @@ class qtype_easyomech_renderer extends qtype_renderer {
                                             $readonly,
                                             $appletoptions,
                                             $strippedanswerid,
-                                            $CFG->wwwroot),
+                                            $CFG->wwwroot,
+                                            $marvinpath),
                                       false,
                                       $jsmodule);
 
