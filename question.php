@@ -45,9 +45,19 @@ class qtype_easyomech_question extends qtype_shortanswer_question {
         $arrowscorrect = 0;
         $i = 0;
         $arrowsusrall = "";
-        if (isset($cmlusr->MDocument[0]->MEFlow['headFlags']) || isset($cmlans->MDocument[0]->MEFlow['headFlags'])) {
+        // Check to see if usr submitted correct type of arrow.
+
+
+
+/*
+            echo "here1 <br>";
+            echo "usr".(string)$cmlusr->MDocument[0]->MEFlow[0]->attributes()->headFlags."<br>";
+            echo "ans".(string)$cmlans->MDocument[0]->MEFlow[0]->attributes()->headFlags;
+*/
+/*
             if ((string)$cmlusr->MDocument[0]->MEFlow[0]->attributes()->headFlags !=
 (string)$cmlans->MDocument[0]->MEFlow[0]->attributes()->headFlags) {
+                echo "here2";
                 if ((string)$cmlans->MDocument[0]->MEFlow[0]->attributes()->headFlags == '2') {
                     $this->usecase = "This is a radical reaction but you used full arrow heads.<br>
                     You should use half arrow heads for radical reactions.  In radical reactions single electrons move.";
@@ -60,7 +70,7 @@ class qtype_easyomech_question extends qtype_shortanswer_question {
                 return 0;
             }
         }
-
+*/
         foreach ($cmlusr->MDocument[0]->MEFlow as $meflowusr) {
             $numbasepointsusr = $meflowusr->MEFlowBasePoint->count();
             $numsetpointsusr = $meflowusr->MAtomSetPoint->count();
@@ -98,6 +108,21 @@ class qtype_easyomech_question extends qtype_shortanswer_question {
         if (!isset($arrowusr)) {
             $this->usecase = "You did not add any arrows.  Use the arrow icon on the left to add arrows next time!";
             return 0;
+        }
+
+        if (isset($cmlans->MDocument[0]->MEFlow['headFlags'])) {   // Must be radical reaction!
+            // Check to see if usr submitted radical arrows.
+            if (!isset($cmlusr->MDocument[0]->MEFlow['headFlags'])) { 
+                $this->usecase = "This is a radical reaction but you used full arrow heads.<br>
+                    You should use half arrow heads for radical reactions.  In radical reactions single electrons move.";
+                return 0;
+            }    
+        } else {   // Must be polar reaction.
+            if (isset($cmlusr->MDocument[0]->MEFlow['headFlags'])) { 
+                $this->usecase = "This is a polar reaction but you used half arrow heads.<br>
+                    You should use full arrow heads for polar reactions.  In polar reactions the electrons move in pairs.";
+                return 0;
+            }   
         }
 
         if ($orderimportant == 0) {
