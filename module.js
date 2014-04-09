@@ -4,13 +4,10 @@
 
 M.qtype_easyomech={
     insert_easyomech_applet : function(Y, toreplaceid, appletid, name, topnode,
-                                                                    appleturl, feedback, readonly, appletoptions, stripped_answer_id, moodleurl, marvinpath){
+                                                                    appleturl, feedback, readonly, stripped_answer_id, moodleurl, marvinpath){
         var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];
         var easyomechoptions = new Array();
 
-        if (appletoptions) {
-            easyomechoptions[easyomechoptions.length] = appletoptions;
-        }
         if (readonly) {
             easyomechoptions[easyomechoptions.length] = Y.one(topnode+' input.mol').get('value');  ///crl 
         }

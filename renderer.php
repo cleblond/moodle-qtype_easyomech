@@ -146,7 +146,7 @@ class qtype_easyomech_renderer extends qtype_renderer {
                                     $this->hidden_fields($qa),
                                     array('class' => 'inputcontrol'));
 
-        $this->require_js($toreplaceid, $qa, $options->readonly, $options->correctness, $CFG->qtype_easyomech_options);
+        $this->require_js($toreplaceid, $qa, $options->readonly, $options->correctness);
 
         return $result;
     }
@@ -169,7 +169,7 @@ class qtype_easyomech_renderer extends qtype_renderer {
         return $question->usecase.$qa->get_question()->format_generalfeedback($qa);
     }
 
-    protected function require_js($toreplaceid, question_attempt $qa, $readonly, $correctness, $appletoptions) {
+    protected function require_js($toreplaceid, question_attempt $qa, $readonly, $correctness) {
         global $PAGE, $CFG;
 
         $marvinconfig = get_config('qtype_easyomech_options');
@@ -202,7 +202,6 @@ class qtype_easyomech_renderer extends qtype_renderer {
                                             $appleturl->out(),
                                             $feedbackimage,
                                             $readonly,
-                                            $appletoptions,
                                             $strippedanswerid,
                                             $CFG->wwwroot,
                                             $marvinpath),
