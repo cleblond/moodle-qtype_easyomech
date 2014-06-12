@@ -33,7 +33,7 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
     protected function definition_inner($mform) {
         global $PAGE, $CFG;
 
-        $PAGE->requires->js('/question/type/easyomech/easyomech_script.js');
+//        $PAGE->requires->js('/question/type/easyomech/easyomech_script.js');
         $PAGE->requires->css('/question/type/easyomech/easyomech_styles.css');
         $mform->addElement('static', 'answersinstruct',
         get_string('correctanswers', 'qtype_easyomech'),
