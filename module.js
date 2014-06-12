@@ -3,6 +3,177 @@
 
 
 M.qtype_easyomech={
+}
+
+
+
+M.qtype_easyomech.init_showarrows = function(Y, moodle_version, slot){
+    var handleSuccess = function(o) {
+
+    };
+    var handleFailure = function(o) {
+        /*failure handler code*/
+    };
+    var callback = {
+        success:handleSuccess,
+        failure:handleFailure
+    };
+    if (moodle_version >= 2012120300) { //Moodle 2.4 or higher
+        YAHOO = Y.YUI2;
+    }
+
+    var refreshBut = Y.one("#showorder"+slot, slot);
+    refreshBut.on("click", function () {
+
+    var xmlStr = document.getElementById('correct_answer'+slot).value;
+
+    ///parse xml string        
+        if (window.DOMParser)
+                  {
+                  parser=new DOMParser();
+                  xmlDoc=parser.parseFromString(xmlStr,"text/xml");
+                  }
+        else // Internet Explorer
+        {
+                  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+                  xmlDoc.async=false;
+                  xmlDoc.loadXML(xmlStr);
+        } 
+
+        meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
+
+        var arrowtot = meflowarrows.length;
+
+        
+        var currentarrow = Number(document.getElementById('curarrow'+slot).value);
+        currentarrow = currentarrow + 1;
+        
+        if(currentarrow > arrowtot){
+        currentarrow = 0;
+        }
+        document.getElementById('curarrow'+slot).value=Number(currentarrow);
+
+        xAll = xmlDoc.getElementsByTagName('*');
+                
+        var i=5, j, y, counter=0, newxmlStr;
+
+        for(j = xAll.length - 1; j >= 0; j -= 1) {
+            y = xAll[j];
+            if (y.nodeName == 'MEFlow') {                    
+                if(counter== arrowtot-currentarrow){j=0;
+                }
+                else{
+                y.parentNode.removeChild(y);
+                }
+                counter=counter+1;
+                         
+            } 
+        }
+        newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
+        document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
+    });
+};
+
+
+
+
+
+M.qtype_easyomech.init_showarrowsrev = function(Y, moodle_version, slot){
+    var handleSuccess = function(o) {
+
+    };
+    var handleFailure = function(o) {
+        /*failure handler code*/
+    };
+    var callback = {
+        success:handleSuccess,
+        failure:handleFailure
+    };
+    if (moodle_version >= 2012120300) { //Moodle 2.4 or higher
+        YAHOO = Y.YUI2;
+    }
+
+
+    var refreshBut = Y.one("#showorderrev"+slot, slot);
+    refreshBut.on("click", function () {
+
+
+
+
+        var xmlStr = document.getElementById('correct_answer'+slot).value;
+
+                ///parse xml string        
+                if (window.DOMParser)
+                  {
+                  parser=new DOMParser();
+                  xmlDoc=parser.parseFromString(xmlStr,"text/xml");
+                 // alert('not IE');
+                  }
+                else // Internet Explorer
+                  {
+                  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+                  xmlDoc.async=false;
+                  xmlDoc.loadXML(xmlStr);
+                  } 
+
+                meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
+
+                var arrowtot = meflowarrows.length;
+
+        
+        var currentarrow = Number(document.getElementById('curarrow'+slot).value);
+
+        currentarrow = currentarrow -1;
+
+        if(currentarrow < 0){
+        currentarrow = arrowtot;
+        }
+        
+
+        document.getElementById('curarrow'+slot).value=Number(currentarrow);
+
+
+        console.log('curarrow='+currentarrow);
+
+                //console.log('prev='+currentarrow);
+        
+                xAll = xmlDoc.getElementsByTagName('*');
+
+                
+                        var i=5, j, y, counter=0, newxmlStr;
+
+
+                          for(j = xAll.length - 1; j >= 0; j -= 1) {
+                            y = xAll[j];
+
+                            //console.log(y.nodeName)
+                            if (y.nodeName == 'MEFlow') {
+                                
+
+                                        if(counter== arrowtot-currentarrow){j=0;
+                                        }
+                                        else{
+                                        y.parentNode.removeChild(y);
+                                        }
+                                        //alert(newxmlStr);
+                                        counter=counter+1;
+                                        //j=0;
+
+                                //}
+                              
+                            } 
+                          }
+                        //}
+                        newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
+                        document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
+
+    });
+};
+
+
+
+
+M.qtype_easyomech={
     insert_easyomech_applet : function(Y, toreplaceid, appletid, name, topnode,
                                                                     appleturl, feedback, readonly, stripped_answer_id, moodleurl, marvinpath){
         var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];
@@ -194,12 +365,80 @@ M.qtype_easyomech={
             this.doneie6focus=1;
         }
         return true;
+    },
+
+    insert_structure_into_applet : function(){
+		var textfieldid = 'id_answer_0';
+		if(document.getElementById(textfieldid).value != '') {
+		
+		var s = document.getElementById(textfieldid).value;
+		document.MSketch.setMol(s, 'mrv');
+		}
+    },
+
+    insert_applet : function(Y, moodleurl, marvinpath){
+
+	var warningspan = document.getElementById('appletdiv');
+        warningspan.innerHTML = '';
+
+        var newApplet = document.createElement("applet");
+        newApplet.code='chemaxon.marvin.applet.JMSketchLaunch';
+        newApplet.archive='appletlaunch.jar';
+        newApplet.name='MSketch';
+        newApplet.width='650';
+        newApplet.height='460';
+        newApplet.tabIndex = -1; // Not directly tabbable
+        newApplet.mayScript = true;     
+	newApplet.id = 'MSketch';
+	newApplet.setAttribute('codebase', marvinpath);
+
+	var param=document.createElement('param');
+	param.name='codebase_lookup';
+        param.value='false';
+	newApplet.appendChild(param);
+
+        var param=document.createElement('param');
+	param.name='menubar';
+        param.value='true';
+	newApplet.appendChild(param);
+
+	var param=document.createElement('param');
+	param.name='menuconfig';
+        param.value = moodleurl+'/question/type/easyomech/customization_mech_instructor.xml';
+	newApplet.appendChild(param);
+
+	var param=document.createElement('param');
+	param.setAttribute('bondDraggedAlong','false');
+	newApplet.appendChild(param);
+
+	var param=document.createElement('param');
+	param.name='chargeWithCircle';
+        param.value='true';
+	newApplet.appendChild(param);
+
+	var param=document.createElement('param');
+	param.name='lonePairsVisible';
+        param.value='true';
+	newApplet.appendChild(param);
+
+	var param=document.createElement('param');
+	param.name='lonePairsAutoCalc';
+        param.value='false';
+	newApplet.appendChild(param);
+
+	var param=document.createElement('param');
+	param.name='defaultTool';
+        param.value='electronFlow2';
+	newApplet.appendChild(param);
+
+        warningspan.appendChild(newApplet);
+
     }
+
 }
 
 
-
-M.qtype_easyomech.init_showarrows = function(Y, moodle_version, slot){
+M.qtype_easyomech.init_getanswerstring = function(Y, moodle_version){
     var handleSuccess = function(o) {
 
     };
@@ -214,151 +453,14 @@ M.qtype_easyomech.init_showarrows = function(Y, moodle_version, slot){
         YAHOO = Y.YUI2;
     }
 
-    var refreshBut = Y.one("#showorder"+slot, slot);
-    refreshBut.on("click", function () {
-
-    var xmlStr = document.getElementById('correct_answer'+slot).value;
-
-    ///parse xml string        
-        if (window.DOMParser)
-                  {
-                  parser=new DOMParser();
-                  xmlDoc=parser.parseFromString(xmlStr,"text/xml");
-                  }
-        else // Internet Explorer
-        {
-                  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-                  xmlDoc.async=false;
-                  xmlDoc.loadXML(xmlStr);
-        } 
-
-        meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
-
-        var arrowtot = meflowarrows.length;
-
-        
-        var currentarrow = Number(document.getElementById('curarrow'+slot).value);
-        currentarrow = currentarrow + 1;
-        
-        if(currentarrow > arrowtot){
-        currentarrow = 0;
-        }
-        document.getElementById('curarrow'+slot).value=Number(currentarrow);
-
-        xAll = xmlDoc.getElementsByTagName('*');
-                
-        var i=5, j, y, counter=0, newxmlStr;
-
-        for(j = xAll.length - 1; j >= 0; j -= 1) {
-            y = xAll[j];
-            if (y.nodeName == 'MEFlow') {                    
-                if(counter== arrowtot-currentarrow){j=0;
-                }
-                else{
-                y.parentNode.removeChild(y);
-                }
-                counter=counter+1;
-                         
-            } 
-        }
-        newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
-        document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
+    Y.all(".id_insert").each(function(node) {
+    	node.on("click", function () {
+        var buttonid = node.getAttribute('id');
+        var s = document.MSketch.getMol('mrv');
+	textfieldid = 'id_answer_' + buttonid.substr(buttonid.length - 1);
+	document.getElementById(textfieldid).value = s;
+    	});
     });
 };
 
-
-
-
-
-M.qtype_easyomech.init_showarrowsrev = function(Y, moodle_version, slot){
-    var handleSuccess = function(o) {
-
-    };
-    var handleFailure = function(o) {
-        /*failure handler code*/
-    };
-    var callback = {
-        success:handleSuccess,
-        failure:handleFailure
-    };
-    if (moodle_version >= 2012120300) { //Moodle 2.4 or higher
-        YAHOO = Y.YUI2;
-    }
-
-
-    var refreshBut = Y.one("#showorderrev"+slot, slot);
-    refreshBut.on("click", function () {
-
-
-
-
-        var xmlStr = document.getElementById('correct_answer'+slot).value;
-
-                ///parse xml string        
-                if (window.DOMParser)
-                  {
-                  parser=new DOMParser();
-                  xmlDoc=parser.parseFromString(xmlStr,"text/xml");
-                 // alert('not IE');
-                  }
-                else // Internet Explorer
-                  {
-                  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
-                  xmlDoc.async=false;
-                  xmlDoc.loadXML(xmlStr);
-                  } 
-
-                meflowarrows = xmlDoc.getElementsByTagName("MEFlow");
-
-                var arrowtot = meflowarrows.length;
-
-        
-        var currentarrow = Number(document.getElementById('curarrow'+slot).value);
-
-        currentarrow = currentarrow -1;
-
-        if(currentarrow < 0){
-        currentarrow = arrowtot;
-        }
-        
-
-        document.getElementById('curarrow'+slot).value=Number(currentarrow);
-
-
-        console.log('curarrow='+currentarrow);
-
-                //console.log('prev='+currentarrow);
-        
-                xAll = xmlDoc.getElementsByTagName('*');
-
-                
-                        var i=5, j, y, counter=0, newxmlStr;
-
-
-                          for(j = xAll.length - 1; j >= 0; j -= 1) {
-                            y = xAll[j];
-
-                            //console.log(y.nodeName)
-                            if (y.nodeName == 'MEFlow') {
-                                
-
-                                        if(counter== arrowtot-currentarrow){j=0;
-                                        }
-                                        else{
-                                        y.parentNode.removeChild(y);
-                                        }
-                                        //alert(newxmlStr);
-                                        counter=counter+1;
-                                        //j=0;
-
-                                //}
-                              
-                            } 
-                          }
-                        //}
-                        newxmlStr = new XMLSerializer().serializeToString(xmlDoc);
-                        document.getElementById('EASYOMECH'+slot).setMol(newxmlStr, "mrv");
-
-    });
-};
 

@@ -175,14 +175,14 @@ class qtype_easyomech_renderer extends qtype_renderer {
         $marvinconfig = get_config('qtype_easyomech_options');
 	$marvinpath = $marvinconfig->path;
 
-        $jsmodule = array(
+/*        $jsmodule = array(
             'name'     => 'qtype_easyomech',
             'fullpath' => '/question/type/easyomech/module.js',
             'requires' => array(),
             'strings' => array(
                 array('enablejava', 'qtype_easyomech')
             )
-        );
+        );  */
         $topnode = 'div.que.easyomech#q'.$qa->get_slot();
         $appleturl = new moodle_url('appletlaunch.jar');
         $feedbackimage = '';
@@ -205,8 +205,7 @@ class qtype_easyomech_renderer extends qtype_renderer {
                                             $strippedanswerid,
                                             $CFG->wwwroot,
                                             $marvinpath),
-                                      false,
-                                      $jsmodule);
+                                      false);
 
     }
 

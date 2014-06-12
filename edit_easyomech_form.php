@@ -68,35 +68,11 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
         $marvinconfig = get_config('qtype_easyomech_options');
 	$marvinpath = $marvinconfig->path;
 
-        // Add applet to page
-        $jsmodule = array(
-            'name'     => 'qtype_easyomech',
-            'fullpath' => '/question/type/easyomech/easyomech_script.js',
-            'requires' => array(),
-            'strings' => array(
-                array('enablejava', 'qtype_easyomech')
-            )
-        );
-
-        $PAGE->requires->js_init_call('M.qtype_easyomech.insert_applet',
-                                      array($CFG->wwwroot, $marvinpath),
-                                      true,
-                                      $jsmodule);
-
-        // Add structure to applet.
-        $jsmodule = array(
-            'name'     => 'qtype_easyomech',
-            'fullpath' => '/question/type/easyomech/easyomech_script.js',
-            'requires' => array(),
-            'strings' => array(
-                array('enablejava', 'qtype_easyomech')
-            )
-        );
+        $PAGE->requires->js_init_call('M.qtype_easyomech.insert_applet', array($CFG->wwwroot, $marvinpath));
 
         $PAGE->requires->js_init_call('M.qtype_easyomech.insert_structure_into_applet',
                                       array(),
-                                      true,
-                                      $jsmodule);
+                                      true);
 
         $this->add_per_answer_fields($mform, get_string('answerno', 'qtype_easyomech', '{no}'),
                 question_bank::fraction_options());
@@ -111,8 +87,7 @@ class qtype_easyomech_edit_form extends qtype_shortanswer_edit_form {
         $repeated = parent::get_per_answer_fields($mform, $label, $gradeoptions,
                 $repeatedoptions, $answersoption);
         $scriptattrs = 'class = id_insert';
-        // Construct the insert button.
-        //$scriptattrs = 'onClick = "getSmilesEdit(this.name, \'mrv\')"';
+
         $insertbutton = $mform->createElement('button', 'insert', get_string('insertfromeditor', 'qtype_easyomech'), $scriptattrs);
         array_splice($repeated, 2, 0, array($insertbutton));
 
